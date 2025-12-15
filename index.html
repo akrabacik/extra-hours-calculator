@@ -34,7 +34,7 @@
   <script>
     function extrah(total, h, holi){
       if (holi === 0) return total - h - 45;
-      return total - h - holi - 40;
+      return total - h - holi - 36;
     }
 
     function calc(){
@@ -48,7 +48,7 @@
       }
 
       let text = `Total extra hour is: ${extrah(total, h, holi)}\n`;
-      text += `Half day hours is: ${h - 4}`;
+      text += `Half day hours is: ${h - 5}`;
       if (holi !== 0) text += `\nHoliday hours is: ${holi - 1}`;
 
       document.getElementById('out').textContent = text;
