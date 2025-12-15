@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Extra Hours Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 560px; margin: 40px auto; padding: 0 16px; }
+    label { display:block; margin-top: 12px; }
+    input { width: 100%; padding: 10px; margin-top: 6px; }
+    button { margin-top: 16px; padding: 10px 14px; cursor: pointer; }
+    .out { margin-top: 18px; padding: 12px; border: 1px solid #ddd; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h2>Extra Hours Calculator</h2>
+
+  <label>Total hours
+    <input id="total" type="number" step="0.01">
+  </label>
+
+  <label>Half day hours
+    <input id="h" type="number" step="0.01">
+  </label>
+
+  <label>Holiday hours
+    <input id="holi" type="number" step="0.01">
+  </label>
+
+  <button onclick="calc()">Calculate</button>
+
+  <div class="out" id="out">Result will appear here.</div>
+
+  <script>
+    function extrah(total, h, holi){
+      if (holi === 0) return total - h - 45;
+      return total - h - holi - 40;
+    }
+
+    function calc(){
+      const total = Number(document.getElementById('total').value);
+      const h = Number(document.getElementById('h').value);
+      const holi = Number(document.getElementById('holi').value);
+
+      if (Number.isNaN(total) || Number.isNaN(h) || Number.isNaN(holi)){
+        document.getElementById('out').textContent = "Please fill all fields.";
+        return;
+      }
+
+      let text = `Total extra hour is: ${extrah(total, h, holi)}\n`;
+      text += `Half day hours is: ${h - 4}`;
+      if (holi !== 0) text += `\nHoliday hours is: ${holi - 1}`;
+
+      document.getElementById('out').textContent = text;
+    }
+  </script>
+</body>
+</html>
